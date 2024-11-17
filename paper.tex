@@ -1,6 +1,5 @@
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
-% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
@@ -11,8 +10,7 @@
 		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 	
-	\title{ECE 590 Term Project
-	}
+	\title{Integration of 75MW Solar PV Plant: Transmission System Design Analysis}
 	
 	\author{\IEEEauthorblockN{Brent Dickinson}
 		\IEEEauthorblockN{Tianci}
@@ -21,53 +19,85 @@
 	\maketitle
 	
 	\begin{abstract}
-		Abstract here.
+		This report presents the design and analysis of transmission system modifications required to integrate a new 75MW solar PV plant while addressing existing system reliability concerns. The study evaluates various transmission line and transformer options to determine the most cost-effective solution that maintains system stability under both normal and N-1 contingency conditions.
 	\end{abstract}
 	
 	\section{Introduction}
-	Text
-	
-	\section{Section 1}
-	Text
-	\subsection{Section A}
-	Text. Equation:
-	\begin{equation}
-		a+b=\gamma\label{eq}
-	\end{equation}
-	Bullets:
 	\begin{itemize}
-		\item Bullet 1.
-		\item Bullet 2.
+		\item Project overview and objectives
+		\item System requirements and constraints
+		\item Design methodology
 	\end{itemize}
-	Figures and tables. Fig.~\ref{fig} shows X. Table ~\ref{tab1} shows Y.
 	
+	\section{Initial System Analysis}
+	\subsection{Base Case Evaluation}
+	\begin{itemize}
+		\item Existing system configuration
+		\item Current system performance metrics
+		\item Identification of existing violations
+	\end{itemize}
+	
+	\subsection{Contingency Analysis Results}
+	\begin{itemize}
+		\item N-1 contingency findings
+		\item Critical violations and their implications
+		\item Key problem areas identified
+	\end{itemize}
+	
+	\section{Design Solutions}
+	\subsection{Design Options Considered}
+	\begin{itemize}
+		\item Transmission line alternatives
+		\item Voltage level considerations
+		\item Transformer placement options
+	\end{itemize}
+	
+	\subsection{Technical Analysis}
+	\begin{itemize}
+		\item Power flow studies
+		\item Contingency analysis results
+		\item System performance improvements
+	\end{itemize}
+	
+	\section{Economic Analysis}
+	\subsection{Cost Components}
+	\begin{itemize}
+		\item Fixed costs (lines, transformers, substations)
+		\item Variable costs (distance-based)
+		\item Loss reduction benefits
+	\end{itemize}
+	
+	\subsection{Solution Comparison}
 	\begin{table}[htbp]
-		\caption{Table Type Styles}
+		\caption{Cost Comparison of Design Options}
 		\begin{center}
 			\begin{tabular}{|c|c|c|c|}
 				\hline
-				\textbf{Table}&\multicolumn{3}{|c|}{\textbf{Table Column Head}} \\
-				\cline{2-4} 
-				\textbf{Head} & \textbf{\textit{Table column subhead}}& \textbf{\textit{Subhead}}& \textbf{\textit{Subhead}} \\
+				\textbf{Design Option} & \textbf{Capital Cost} & \textbf{Loss Savings} & \textbf{Net Cost} \\
 				\hline
-				copy& More table copy$^{\mathrm{a}}$& &  \\
+				Option 1 & & & \\
 				\hline
-				\multicolumn{4}{l}{$^{\mathrm{a}}$Sample of a Table footnote.}
+				Option 2 & & & \\
+				\hline
 			\end{tabular}
-			\label{tab1}
+			\label{tab:costs}
 		\end{center}
 	\end{table}
 	
-	\begin{figure}[htbp]
-		\centerline{\includegraphics{figures/fig1.png}}
-		\caption{Example of a figure caption.}
-		\label{fig}
-	\end{figure}
+	\section{Recommended Solution}
+	\begin{itemize}
+		\item Final design selection
+		\item Technical justification
+		\item Economic justification
+		\item Implementation considerations
+	\end{itemize}
 	
-	\section*{References}
-	
-	Cite like this \cite{b1}.
-		\begin{thebibliography}{00}
-		\bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.
+	\section{Conclusion}
+	Summary of key findings and recommendations
+		
+	\begin{thebibliography}{00}
+		\bibitem{b1} PowerWorld Corporation, "PowerWorld Simulator Manual," 2024.
+		\bibitem{b2} IEEE Standard 1547-2018, "IEEE Standard for Interconnection and Interoperability of Distributed Energy Resources with Associated Electric Power Systems Interfaces."
 	\end{thebibliography}
+	
 \end{document}
