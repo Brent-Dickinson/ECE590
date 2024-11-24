@@ -97,7 +97,7 @@ First we attempted to maintain NEWSOLAR at 69kV with new connections to BUCKEYE 
 
 Next we installed a 138kV bus at NEWSOLAR with a 138/69kV transformer connecting it to the 69kV bus. Since voltage dropped too low at OAK in the previous design, we connected NEWSOLAR138 to OAK138 using Cardinal 1010A/241.4MVA lines. Since 138kV lines are significantly more expensive than 69kV, we kept the 69kV connection to PINE69. We found a slight overcurrent contingency violation on the OAK69-BUCKEYE69 line when PINE-APPLE is open, so we upgraded it to the 900A Condor lines. With this new configuration there are no contingency violations.
 
-PowerWorld's Case Summary for this configuration shows losses of 10.9MW, a 0.2MW increase from the base scenario. That suggests we should consider upgrading more transmission lines to see if we can achieve enough reduction in loss to offset costs. Contingency analysis showed no violations with this configuration, so we now examine the cost of this approach before considering more upgrades. Table \ref{tab:cost_breakdown_with_losses} shows the breakdown of costs incurred, with a total of \$21,715,600.
+PowerWorld's Case Summary for this configuration shows losses of 10.6MW, a 0.1MW decrease from the base scenario. That will slightly offset upgrade costs from power saving over five years. Contingency analysis showed no violations with this configuration, so we now examine the cost of this approach. Table \ref{tab:cost_breakdown_option1} shows the breakdown of costs incurred, with a total of \$20,927,200.
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{|l|r|}
@@ -119,15 +119,15 @@ PowerWorld's Case Summary for this configuration shows losses of 10.9MW, a 0.2MW
 		\hspace{1em} Fixed Cost & 750,000 \\ 
 		\hspace{1em} Variable Cost (\$410,000/km for 14 km) & 5,740,000 \\ 
 		\hspace{1em} \textbf{Total} & \textbf{6,490,000} \\ \hline
-		\textbf{Increased Loss (0.2 MW over 5 years)} & \textbf{525,600} \\ \hline
-		\textbf{Grand Total} & \textbf{21,715,600} \\ \hline
+		\textbf{Loss Savings (0.1 MW over 5 years)} & \textbf{-262,800} \\ \hline
+		\textbf{Grand Total} & \textbf{20,927,200} \\ \hline
 	\end{tabular}
 	\vspace{0.5em}
-	\caption{Cost Breakdown of Option 2}
-	\label{tab:cost_breakdown_with_losses}
+	\caption{Cost Breakdown of Transmission Line and Transformer Upgrades, Including Loss Savings}
+	\label{tab:cost_breakdown_option1}
 \end{table}
 
-The massive expense of replacing lines seen in Table \ref{tab:cost_breakdown_with_losses} suggests that loss reduction will not pay for more line upgrades. Next we examine whether there is a better way to connect NEWSOLAR to the grid, perhaps with closer stations.
+The massive expense of replacing lines seen in Table \ref{tab:cost_breakdown_option1} suggests that loss reduction will not pay for more line upgrades. Next we examine whether there is a better way to connect NEWSOLAR to the grid, perhaps with closer stations.
 \section{Conclusion}
 Summary of key findings and recommendations
 	
