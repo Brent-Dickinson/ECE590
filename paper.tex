@@ -77,21 +77,65 @@ The design solution must incorporate new transmission infrastructure to connect 
 
 The optimal solution will minimize total cost, calculated as the construction costs minus any savings from reduced system losses over a 5-year period at \$60/MWh. Construction costs include both fixed components (\$1.25M for 138 kV or \$750k for 69 kV lines) and variable costs based on distance and conductor type. If 138 kV is utilized, additional costs include substation upgrades (\$900k per substation) and necessary transformers (\$1.5M for 101 MVA or \$1.8M for 168 MVA). The solution must resolve existing contingency violations, particularly the overloads observed in the OAK69-BUCKEYE69-APPLE69 corridor, while ensuring reliable operation both when the solar plant is at full output and when it is offline.
 \subsection{Transmission Line Parameters}
-A note on how to input transmission line parameters into PowerWorld is in order. Table A.4 in the text gives resistance in ohms per conductor per mile for 50$^\circ$C at 60Hz as well as series inductance (ohms/mile/conductor for 1 foot spacing) and shunt capacitance (Mohms/mile/conductor for 1 foot spacing). Resistance pulled from Table A.4 can be input directly into the "Calculate Impedances" dialog box in PowerWorld. But for 69kV lines, the three phases are spaced 2m apart and 4m apart for 138kV lines. We need a way to convert the 1-foot spacing parameters appropriately. Assuming equilateral spacing of lines, Equation 4.5.9 in the text suggests a simple way to adjust series inductance. We simply add the following quantity to that given in the table:
+A note on how to input transmission line parameters into PowerWorld is in order. Table A.4 in the text gives resistance in ohms per conductor per mile for 50$^\circ$C at 60Hz as well as series inductance (ohms/mile/conductor for 1 foot spacing) and shunt capacitance (S/mile/conductor for 1 foot spacing). Resistance pulled from Table A.4 can be used directly in the "Calculate Impedances" dialog box in PowerWorld. But for 69kV lines, the three phases are spaced 2m apart and 4m apart for 138kV lines. We need a way to convert the 1-foot spacing parameters appropriately. Assuming equilateral spacing of lines, Equation 4.5.9 in the text suggests a simple way to adjust series per-mile impedance from the table:
 \begin{flalign}
-	\Delta L_{69} &= 2\pi\cdot60\cdot2\times10^{-7}\left(\ln\frac{D_2}{D_1}\right)\nonumber\\
-	&= 2\pi\cdot60\cdot2\times10^{-7}\left(\ln\frac{2}{0.3048}\right) = 0.0001\\
-	\Delta L_{138} &= 2\pi\cdot60\cdot2\times10^{-7}\left(\ln\frac{4}{0.3048}\right) = 0.0002.
+	X_{2m} &= X_{1ft}\cdot\frac{\ln\left(\frac{2\times3.28}{\text{GMR}}\right)}{\ln\left(\frac{1}{\text{GMR}}\right)}
 \end{flalign}
-
-Using Equation 4.9.15 in the text we can develop a multiplication factor to adjust table shunt capacitance values for larger conductor spacing:
+where GMR comes from the same table for the conductor of interest. We calculate shunt susceptance manually using values given in the table:
 \begin{flalign}
-	\frac{X_c^\text{new}}{X_c^\text{old}} & = \frac{\ln\left(\frac{D_\text{old}}{r}\right)}{\ln\left(\frac{D_\text{new}}{r}\right)}
+	B_{2m} & = \frac{2\pi\epsilon}{\ln(D/r)}
 \end{flalign}
+where $r$ is the conductor's outer radius. Though these are stranded conductors, we treat them as solid since the associated error is small. Note that we multiply this value by 3 for 3 phases. 
 
-where $r$ is the conductor's outer radius. Though these are stranded conductors, we treat them as solid since the associated error is small.
+Table \ref{tab:tl_params} shows parameters for the 69kV lines which go into PowerWorld's Impedance Calculator. We do not include the 138kV lines for reasons explained in the next section.
+\begin{table}
+	\begin{tabular}{|l|c|c|c|}
+		\hline
+		Parameter & Rook & Crow & Condor \\
+		\hline
+		R ($\Omega$/mile) & 0.1688 & 0.1482 & 0.1378 \\
+		X ($\Omega$/mile) & 0.6421 & 0.6352 & 0.6326 \\
+		B (S/mile) & $16.15\times10^{-6}$ & $16.30\times10^{-6}$ & $16.44\times10^{-6}$ \\
+		\hline
+	\end{tabular}
+	\vspace{0.5em}
+	\caption{Transmission Line Parameters at 60 Hz, 2m Spacing}
+	\label{tab:tl_params}
+\end{table}
 \subsection{Candidate Solutions}
-With an impractically large set of possible solutions, we started with a couple of simple approaches to integrate the 75 MW solar facility while addressing system reliability concerns. We focused mainly on distance from NEWSOLAR, identifying BUCKEYE and APPLE as the closest stations.
+Table \ref{tab:all_conn} shows all possible NEWSOLAR connections to the network, given the provided set of right-of-way paths available to us. The cost of 138kV lines and transformers suggests we can eliminate any solution involving those lines; we will connect NEWSOLAR exclusively with 69kV lines unless we are unable to solve potential contingency violations. The approach here is to start with the solution involving least total line distance (case 1). We move to solutions involving longer connections only if we run into contingency violations. Further, we use the least expensive conductors to start and upgrade only if needed. 
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|l|c|}
+		\hline
+		\textbf{Case number} & \textbf{Destination buses} & \textbf{Total distance} \\
+		\hline
+		1 & BK69, AP69 & 12 \\
+		2 & BK69, OAK69 & 19 \\
+		3 & BK69, OAK138 & 19 \\
+		4 & AP69, OAK69 & 19 \\
+		5 & AP69, OAK138 & 19 \\
+		6 & BK69, PIINE69 & 20 \\
+		7 & BK69, PINE138 & 20 \\
+		8 & AP69, PINE69 & 20 \\
+		9 & AP69, PINE138 & 20 \\
+		10 & BK69, MP69 & 21 \\
+		11 & AP69, MP69 & 21 \\
+		12 & OAK69, PINE69 & 27 \\
+		13 & OAK69, PINE138 & 27 \\
+		14 & OAK138, PINE69 & 27 \\
+		15 & OAK138, PINE138 & 27 \\
+		16 & OAK69, MP69 & 28 \\
+		17 & OAK138, MP69 & 28 \\
+		18 & PINE69, MP69 & 29 \\
+		19 & PINE138, MP69 & 29 \\
+		\hline
+	\end{tabular}
+	\vspace{0.5em}
+	\caption{Possible NEWSOLAR Connections}
+	\label{tab:all_conn}
+\end{table}
+We started with case 1: maintain NEWSOLAR at 69kV with connections to BUCKEYE and APPLE using Rook 770A conductors. 
 
 First we attempted to maintain NEWSOLAR at 69kV with new connections to BUCKEYE and APPLE using Condor 900A/107.5MVA conductors. We selected those stations because of their proximity to NEWSOLAR (only 6km each). We upgraded the OAK69-BUCKEYE69 and BUCKEYE69-APPLE69 lines to the highest-rated available 69kV conductor (Condor at 900A). However, contingency analysis revealed voltage violations at OAK138, dropping to 0.939 per unit when the OAK345-OAK138 transformer is opened. This suggests a need for stronger integration with the 138kV network.
 
