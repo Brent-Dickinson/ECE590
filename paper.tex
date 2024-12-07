@@ -13,7 +13,7 @@
 	\title{Integration of 75MW Solar PV Plant: Transmission System Design Analysis}
 	
 	\author{\IEEEauthorblockN{Brent Dickinson}
-		\IEEEauthorblockN{Tianci}
+		\IEEEauthorblockN{Tianci Xi}
 	}
 	
 	\maketitle
@@ -77,7 +77,7 @@ The design solution must incorporate new transmission infrastructure to connect 
 
 The optimal solution will minimize total cost, calculated as the construction costs minus any savings from reduced system losses over a 5-year period at \$60/MWh. Construction costs include both fixed components (\$1.25M for 138 kV or \$750k for 69 kV lines) and variable costs based on distance and conductor type. If 138 kV is utilized, additional costs include substation upgrades (\$900k per substation) and necessary transformers (\$1.5M for 101 MVA or \$1.8M for 168 MVA). The solution must resolve existing contingency violations, particularly the overloads observed in the OAK69-BUCKEYE69-APPLE69 corridor, while ensuring reliable operation both when the solar plant is at full output and when it is offline.
 \subsection{Transmission Line Parameters}
-A note on how to input transmission line parameters into PowerWorld is in order. Table A.4 in the text gives resistance in ohms per conductor per mile for 50$^\circ$C at 60Hz as well as series inductance (ohms/mile/conductor for 1 foot spacing) and shunt capacitance (S/mile/conductor for 1 foot spacing). Resistance pulled from Table A.4 can be used directly in the "Calculate Impedances" dialog box in PowerWorld. But for 69kV lines, the three phases are spaced 2m apart and 4m apart for 138kV lines. We need a way to convert the 1-foot spacing parameters appropriately. Assuming equilateral spacing of lines, Equation 4.5.9 in the text suggests a simple way to adjust series per-mile impedance from the table:
+A note on how to input transmission line parameters into PowerWorld is in order. Table A.4 in the text gives resistance in ohms per conductor per mile for 50$^\circ$C at 60Hz as well as series inductance (ohms/mile/conductor for 1 foot spacing) and shunt capacitance (S/mile/conductor for 1 foot spacing). Resistance pulled from Table A.4 can be used directly in the "Calculate Impedances" dialog box in PowerWorld. But for 69kV lines, the three phases are spaced 2m apart and 4m apart for 138kV lines. We need a way to convert the 1-foot spacing parameters appropriately. Assuming equilateral spacing of lines, Equation 4.5.9 \cite{glover2007} in the text suggests a simple way to adjust series per-mile impedance from the table:
 \begin{flalign}
 	X_{2m} &= X_{1ft}\cdot\frac{\ln\left(\frac{2\times3.28}{\text{GMR}}\right)}{\ln\left(\frac{1}{\text{GMR}}\right)}
 \end{flalign}
@@ -91,6 +91,7 @@ where $r$ is the conductor's outer radius. Though these are stranded conductors,
 
 Table \ref{tab:tl_params} shows parameters for the 69kV lines which go into PowerWorld's Impedance Calculator. We do not include the 138kV lines for reasons explained in the next section.
 \begin{table}
+	\centering
 	\begin{tabular}{|l|c|c|c|}
 		\hline
 		Parameter & Rook & Crow & Condor \\
@@ -105,7 +106,7 @@ Table \ref{tab:tl_params} shows parameters for the 69kV lines which go into Powe
 	\label{tab:tl_params}
 \end{table}
 \subsection{Candidate Solutions}
-Table \ref{tab:all_conn} shows all possible NEWSOLAR connections to the network, given the provided set of right-of-way paths available to us. The cost of 138kV lines and transformers suggests we can eliminate any solution involving those lines; we will connect NEWSOLAR exclusively with 69kV lines unless we are unable to solve potential contingency violations. 
+Table \ref{tab:all_conn} shows all possible NEWSOLAR connections to the network, given the provided set of right-of-way paths available to us. We include cost of installing the least expensive conductors (Rook for 69kV, Crow for 138kV) in the last column. Note that for any 138kV connections, we need to install a 138kV bus with 69-138 transformer at NEWSOLAR. This cost is included in Table \ref{tab:all_conn} and suggests we can eliminate any solution involving those lines; we will connect NEWSOLAR exclusively with 69kV lines unless we are unable to meet the requirements. 
 
 The approach here is to start with the solution involving least total line distance (case 1). We move to solutions involving longer connections only if we run into contingency violations. Further, we use the least expensive conductors to start and upgrade only if needed. 
 \begin{table}[h]
@@ -117,23 +118,23 @@ The approach here is to start with the solution involving least total line dista
 		\hline
 		1 & BK69, AP69 & 12 & 5.94 \\
 		2 & BK69, OAK69 & 19 & 8.53 \\
-		3 & BK69, OAK138 & 19 & 15.17 \\
+		3 & BK69, OAK138 & 19 & 14.37 \\
 		4 & AP69, OAK69 & 19 & 8.53 \\
-		5 & AP69, OAK138 & 19 & 15.17 \\
+		5 & AP69, OAK138 & 19 & 14.37 \\
 		6 & BK69, PIINE69 & 20 & 8.90 \\
-		7 & BK69, PINE138 & 20 & 15.80 \\
+		7 & BK69, PINE138 & 20 & 14.90 \\
 		8 & AP69, PINE69 & 20 & 8.90 \\
-		9 & AP69, PINE138 & 20 & 15.80 \\
+		9 & AP69, PINE138 & 20 & 14.90 \\
 		10 & BK69, MP69 & 21 & 9.27 \\
 		11 & AP69, MP69 & 21 & 9.27 \\
 		12 & OAK69, PINE69 & 27 & 11.49 \\
-		13 & OAK69, PINE138 & 27 & 19.56 \\
-		14 & OAK138, PINE69 & 27 & 19.56 \\
-		15 & OAK138, PINE138 & 27 & 19.56 \\
+		13 & OAK69, PINE138 & 27 & 18.36 \\
+		14 & OAK138, PINE69 & 27 & 18.36 \\
+		15 & OAK138, PINE138 & 27 & 18.36 \\
 		16 & OAK69, MP69 & 28 & 11.86 \\
-		17 & OAK138, MP69 & 28 & 20.19 \\
+		17 & OAK138, MP69 & 28 & 18.89 \\
 		18 & PINE69, MP69 & 29 & 12.23 \\
-		19 & PINE138, MP69 & 29 & 20.82 \\
+		19 & PINE138, MP69 & 29 & 19.42 \\
 		\hline
 	\end{tabular}
 	\vspace{0.5em}
@@ -141,7 +142,24 @@ The approach here is to start with the solution involving least total line dista
 	\label{tab:all_conn}
 \end{table}
 
-We found that simply installing connections to BUCKEYE and APPLE results in several contingency violations. These violations came from over-currents on the OAK-BUCKEYE line we so we replaced that line with Crow conductors to ensure ample allowance for current. With the replaced line we saw no violations. The total cost for case 1 with this upgrade is shown in Table \ref{tab:cost_breakdown_case1}.
+We found that simply installing connections to BUCKEYE and APPLE results in several contingency violations. These violations came from over-currents on the OAK-BUCKEYE line we so we replaced that line with Crow conductors to ensure ample allowance for current. With the replaced line we saw no violations. We also saw no violations when we turned off the NEWSOLAR plant in this configuration. 
+
+We see significant power loss savings with this configuration. The screenshot in Figure \ref{fig:case1loss} demonstrates new losses of 9.8MW, a savings of 0.9MW from the base case. To calculate the economic value of this improvement over the five-year period:
+\begin{flalign}
+	\text{Annual hours} &= 365 \text{ days} \times 24 \text{ hours} = 8760 \text{ hours} \\
+	\text{Energy saved} &= 0.9 \text{ MW} \times 8760 \text{ hours/year} \times 5 \text{ years}\nonumber \\
+	&= 39,420 \text{ MWh} \\
+	\text{Cost savings} &= 39,420 \text{ MWh} \times \$60\text{/MWh}\nonumber \\
+	&= \$2.37\text{M}
+\end{flalign}
+The total cost for case 1 with this upgrade (and including the power loss savings) is shown in Table \ref{tab:cost_breakdown_case1}.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\linewidth]{figures/case1loss}
+	\caption{Case summary for case 1 + upgrade}
+	\label{fig:case1loss}
+\end{figure}
+
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{|l|r|}
@@ -159,16 +177,30 @@ We found that simply installing connections to BUCKEYE and APPLE results in seve
 		\hspace{1em} Fixed Cost & 0.75 \\ 
 		\hspace{1em} Variable Cost (\$370,000/km for 6 km) & 2.22 \\ 
 		\hspace{1em} \textbf{Total} & \textbf{2.97} \\ \hline
-		\textbf{Grand Total} & \textbf{9.81} \\ \hline
+		\textbf{Loss Savings (0.9 MW over 5 years)} & \textbf{-2.37} \\ \hline
+		\textbf{Grand Total} & \textbf{7.44} \\ \hline
 	\end{tabular}
 	\vspace{0.5em}
 	\caption{Cost Breakdown for Case 1 Implementation with OAK-BUCKEYE Upgrade}
 	\label{tab:cost_breakdown_case1}
 \end{table}
+We consider cases 2, 4, 6, 8, 10 and 11 as seen in Table \ref{tab:all_conn} because their base cost is in the same neighborhood. Since it is difficult to predict power loss savings, due diligence requires at least a cursory examination. However, the cheapest 6km installation costs \$3M, so for any of these other cases to be preferred there must be no contingency violations. Any corrective line replacement will almost certainly make that option more expensive than case 1 with upgrade. Our approach to this analysis was to install all considered lines and alternately turn on or off the relevant lines, shown in Figure \ref{fig:multi}.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\linewidth]{figures/multi}
+	\caption{Approach to multiple connection analysis}
+	\label{fig:multi}
+\end{figure}
 
-This cost exceeds that of cases 2, 4, 6, 8, 10 and 11 as seen in Table \ref{tab:all_conn}. However, the cheapest 6km installation costs \$3M, so for any of these other cases to be preferred there must be no contingency violations. If there are, any corrective line replacement will make that option more expensive than case 1 with upgrade.
 
-
+Case 2 shows four contingency violations related to undervoltage at the OAK 138 \& 345 buses and overcurrent on the BUCKEYE-APPLE line. Case 4 shows the same undervolatge violations as case 2. Case 6 results in the same overcurrent violation observed in the base case (though only when NEWSOLAR is turned off). Cases 8, 10 and 11 all cause overcurrent contingency violations. To correct any of these issues, we would need to install a minimum of 6km of Rook conductors. That makes all these cases more expensive than case 1 plus upgrade.
 \section{Conclusion}
-Summary of key findings and recommendations
+Through systematic analysis of 19 possible configurations for the new 75 MW solar facility, we determined that the most cost-effective solution is to connect NEWSOLAR to both BUCKEYE69 and APPLE69 substations using 69 kV lines with Rook conductors, while upgrading the existing OAK69-BUCKEYE69 line using Crow conductors. This configuration, costing \$7.44M, represents the optimal balance between reliability requirements and economic constraints.
+
+The decision to use exclusively 69 kV connections was driven by the substantial cost premium associated with 138 kV options, which required additional substation infrastructure and more expensive conductors. While several other 69 kV configurations appeared comparable in cost, all required remedial upgrades to address contingency violations that ultimately made them more costly than our chosen solution. The upgrade of the OAK69-BUCKEYE69 line to Crow conductors provides sufficient capacity to handle contingency scenarios both with NEWSOLAR at full output and offline, while maintaining all bus voltages and line flows within acceptable limits.
+
+This design successfully achieves all project objectives: it provides redundant transmission paths to the solar facility, resolves existing system violations, maintains system stability under N-1 contingency conditions, and does so at minimum cost. The solution's simplicity and use of standard components should also facilitate maintenance and reduce implementation complexity.
+\begin{thebibliography}{9}
+	\bibitem{glover2007} J. D. Glover, M. S. Sarma, and T. J. Overbye, \textit{Power Systems Analysis and Design}, 4th ed. Stamford, CT: Cengage Learning, 2007.
+\end{thebibliography}
 \end{document}
