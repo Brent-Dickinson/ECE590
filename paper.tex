@@ -194,21 +194,21 @@ We consider cases 2, 4, 6, 8, 10 and 11 as seen in Table \ref{tab:all_conn} beca
 
 Case 2 shows four contingency violations related to undervoltage at the OAK 138 \& 345 buses and overcurrent on the BUCKEYE-APPLE line. Case 4 shows the same undervolatge violations as case 2. Case 6 results in the same overcurrent violation observed in the base case (though only when NEWSOLAR is turned off). Cases 8, 10 and 11 all cause overcurrent contingency violations. To correct any of these issues, we would need to install a minimum of 6km of Rook conductors. That makes all these cases more expensive than case 1 plus upgrade.
 
-For due diligence we probed our case 1 + upgrades solution for even more cost effective solutions. We discovered that dropping the OAK-BUCKEYE line upgrade but installing a new Rook 69kV line from APPLE to ORANGE improves power loss while requiring only 1 additional km of line. This configuration throws no contingency violations with NEWSOLAR on or off. Figure \ref{fig:case1plusnewline} shows the lines we installed. There are no upgrades outside of installed lines. Figure \ref{fig:case1plusnewlineloss} shows a new loss of 9.7MW. 
+For due diligence we probed our case 1 + upgrades solution for even more cost effective solutions. We discovered that dropping the OAK-BUCKEYE line upgrade but installing a new Rook 69kV line from BUCKEYE to ORANGE improves power loss without increasing to total line length. This configuration throws no contingency violations with NEWSOLAR on or off. Figure \ref{fig:case1plusnewline} shows the lines we installed. There are no upgrades outside of installed lines. Figure \ref{fig:case1plusnewlineloss} shows a new loss of 9.6MW. 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=.7\linewidth]{figures/case1_plusnewline}
-	\caption{Schematic of final solution: case 1 + APPLE-ORANGE`}
+	\caption{Schematic of final solution: case 1 + BUCKEYE-ORANGE`}
 	\label{fig:case1plusnewline}
 \end{figure}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\linewidth]{figures/case1_plusnewline_loss}
-	\caption{Case summary for final solution: case 1 + APPLE-ORANGE}
+	\caption{Case summary for final solution: case 1 + BUCKEYE-ORANGE}
 	\label{fig:case1plusnewlineloss}
 \end{figure}
 
-Further analysis revealed that this configuration provides several advantages over the previous solution. It eliminates the need to replace the existing OAK-BUCKEYE line, reducing construction complexity and avoiding potential service interruptions during upgrades. The new APPLE-ORANGE connection creates an alternative power flow path that naturally redistributes power flow during contingencies, resulting in slightly better loss reduction (1.0 MW versus 0.9 MW). Table \ref{tab:cost_breakdown_final} demonstrates a modest cost savings over the previous solution, making this our preferred design. Table \ref{tab:cost_breakdown_final} demonstrates a slim savings over the previous solution of about \$50k. We choose this as our final solution since it meets all other design criteria. 
+Further analysis revealed that this configuration provides several advantages over the previous solution. It eliminates the need to replace the existing OAK-BUCKEYE line, reducing construction complexity and avoiding potential service interruptions during upgrades. The new BUCKEYE-ORANGE connection creates an alternative power flow path that naturally redistributes power flow during contingencies, resulting in slightly better loss reduction (1.1 MW versus 0.9 MW). Table \ref{tab:cost_breakdown_final} demonstrates a modest cost savings over the previous solution, making this our preferred design. Table \ref{tab:cost_breakdown_final} demonstrates a slim savings over the previous solution of about \$0.68m. We choose this as our final solution since it meets all other design criteria. 
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{|l|r|}
@@ -224,21 +224,21 @@ Further analysis revealed that this configuration provides several advantages ov
 		\hspace{1em} \textbf{Total} & \textbf{2.97} \\ \hline
 		\multicolumn{2}{|l|}{\textbf{New Line APPLE-ORANGE (69kV Rook)}} \\ 
 		\hspace{1em} Fixed Cost & 0.75 \\ 
-		\hspace{1em} Variable Cost (\$370,000/km for 9 km) & 3.33 \\ 
-		\hspace{1em} \textbf{Total} & \textbf{4.08} \\ \hline
-		\textbf{Loss Savings (1.0 MW over 5 years)} & \textbf{-2.63} \\ \hline
-		\textbf{Grand Total} & \textbf{7.39} \\ \hline
+		\hspace{1em} Variable Cost (\$370,000/km for 8 km) & 2.96 \\ 
+		\hspace{1em} \textbf{Total} & \textbf{3.71} \\ \hline
+		\textbf{Loss Savings (1.1 MW over 5 years)} & \textbf{-2.89} \\ \hline
+		\textbf{Grand Total} & \textbf{6.76} \\ \hline
 	\end{tabular}
 	\vspace{0.5em}
-	\caption{Cost Breakdown for Final Solution with APPLE-ORANGE Connection}
+	\caption{Cost Breakdown for Final Solution with BUCKEYE-ORANGE Connection}
 	\label{tab:cost_breakdown_final}
 \end{table}
 \section{Conclusion}
-Through systematic analysis of 19 possible configurations for the new 75 MW solar facility, we determined that the most cost-effective solution is to connect NEWSOLAR to both BUCKEYE69 and APPLE69 substations using 69 kV lines with Rook conductors, while adding a new 69 kV Rook line between APPLE69 and ORANGE69. This configuration, costing \$7.39M, represents the optimal balance between reliability requirements and economic constraints.
+Through systematic analysis of 19 possible configurations for the new 75 MW solar facility, we determined that the most cost-effective solution is to connect NEWSOLAR to both BUCKEYE69 and APPLE69 substations using 69 kV lines with Rook conductors, while adding a new 69 kV Rook line between BUCKEYE69 and ORANGE69. This configuration, costing \$6.76M, represents the optimal balance between reliability requirements and economic constraints.
 
 The decision to use exclusively 69 kV connections was driven by the substantial cost premium associated with 138 kV options, which required additional substation infrastructure and more expensive conductors. While several other 69 kV configurations appeared comparable in cost, all required remedial upgrades to address contingency violations that ultimately made them more costly than our chosen solution. The addition of the APPLE69-ORANGE69 line provides an alternative power flow path that effectively resolves the existing contingency violations while avoiding the need to upgrade the OAK69-BUCKEYE69 line. This configuration maintains stability under all N-1 contingency scenarios both with NEWSOLAR at full output and when offline.
 
-This design successfully achieves all project objectives: it provides redundant transmission paths to the solar facility, resolves existing system violations, maintains system stability under N-1 contingency conditions, and does so at minimum cost. The solution's use of standard components and strategic placement of the new APPLE69-ORANGE69 line not only reduces initial capital costs but also provides better loss reduction, saving an additional 0.1 MW compared to alternative solutions. The simplicity of using consistent conductor types (Rook) for all new lines should also facilitate maintenance and reduce implementation complexity.
+This design successfully achieves all project objectives: it provides redundant transmission paths to the solar facility, resolves existing system violations, maintains system stability under N-1 contingency conditions, and does so at minimum cost. The solution's use of standard components and strategic placement of the new APPLE69-ORANGE69 line not only reduces initial capital costs but also provides better loss reduction, saving an additional 0.2 MW compared to alternative solutions. The simplicity of using consistent conductor types (Rook) for all new lines should also facilitate maintenance and reduce implementation complexity.
 \begin{thebibliography}{9}
 	\bibitem{glover2007} J. D. Glover, M. S. Sarma, and T. J. Overbye, \textit{Power Systems Analysis and Design}, 4th ed. Stamford, CT: Cengage Learning, 2007.
 \end{thebibliography}
