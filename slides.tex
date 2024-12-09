@@ -79,7 +79,7 @@
 					\item 69 kV options: \$5.94M - \$12.23M
 					\item 138 kV options: \$14.37M - \$19.42M
 					\item Shortest path: NEWSOLAR to BUCKEYE69 \& APPLE69 (12 km)
-					\item Required upgrade: OAK69-BUCKEYE69 to Crow conductor
+					\item Required upgrade - contingency violations
 				\end{itemize}
 			\end{column}
 			\begin{column}{0.6\textwidth}
@@ -126,10 +126,10 @@
 						\hline
 						NEWSOLAR-BUCKEYE Line & 2.97 \\
 						NEWSOLAR-APPLE Line & 2.97 \\
-						APPLE-ORANGE Line & 4.08 \\
-						Loss Savings (1.0 MW) & -2.63 \\
+						BUCKEYE-ORANGE Line & 3.71 \\
+						Loss Savings (1.2 MW) & -3.15 \\
 						\hline
-						\textbf{Total} & \textbf{7.39} \\
+						\textbf{Total} & \textbf{6.50} \\
 						\hline
 					\end{tabular}
 				}
@@ -146,39 +146,39 @@
 			\end{minipage}
 		\end{column}
 		\begin{column}{0.5\textwidth}
-			\includegraphics[width=\linewidth]{figures/case1_plusnewline}
+			\includegraphics[width=\linewidth]{figures/finalschematic}
 		\end{column}
 	\end{columns}
 \end{frame}
+
+\begin{frame}{Loss Reduction Analysis}
+	\begin{columns}[T]
+		\begin{column}{0.4\textwidth}
+			\begin{itemize}
+				\item Base case losses: 10.7 MW
+				\item Final configuration: 9.5 MW
+				\item Savings: 1.2 MW
+				\item 5-year energy savings: 52,560 MWh
+				\item Economic value: \$3.15M at \$60/MWh
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.6\textwidth}
+			\includegraphics[width=1\linewidth]{figures/finallosses}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Conclusions}
+	\begin{itemize}
+		\item Optimal solution: 69 kV connections to BUCKEYE \& APPLE, plus new BUCKEYE-ORANGE line
+		\item Strategic BUCKEYE-ORANGE connection eliminates need for OAK-BUCKEYE upgrade
+		\item Substantial loss reduction: 1.2 MW
+		\item Total cost \$6.50M including loss savings
+		\item Meets all reliability and redundancy requirements with simpler implementation
+	\end{itemize}
+\end{frame}
 	
-	\begin{frame}{Loss Reduction Analysis}
-		\begin{columns}[T]
-			\begin{column}{0.4\textwidth}
-				\begin{itemize}
-					\item Base case losses: 10.7 MW
-					\item Final configuration: 9.7 MW
-					\item Savings: 1.0 MW
-					\item 5-year energy savings: 43,800 MWh
-					\item Economic value: \$2.63M at \$60/MWh
-				\end{itemize}
-			\end{column}
-			\begin{column}{0.6\textwidth}
-				\includegraphics[width=1\linewidth]{figures/case1_plusnewline_loss}
-			\end{column}
-		\end{columns}
-	\end{frame}
-	
-	\begin{frame}{Conclusions}
-		\begin{itemize}
-			\item Optimal solution: 69 kV connections to BUCKEYE \& APPLE, plus new APPLE-ORANGE line
-			\item Strategic APPLE-ORANGE connection eliminates need for OAK-BUCKEYE upgrade
-			\item Better loss reduction: 1.0 MW vs 0.9 MW in previous solution
-			\item Total cost \$7.39M including loss savings
-			\item Meets all reliability and redundancy requirements with simpler implementation
-		\end{itemize}
-	\end{frame}
-	
-	\begin{frame}{Questions?}
+	\begin{frame}{Live Demo - Tianci}
 		\centering
 		\Large{Thank you}
 	\end{frame}
